@@ -1,3 +1,5 @@
+// jshint esversion: 6
+
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
@@ -5,6 +7,7 @@ const fs = require('fs');
 const port = process.env.PORT || 8000;
 
 var app = express();
+
 
 // hbs declarations
 hbs.registerPartials(__dirname + '/views/partials');
@@ -28,15 +31,43 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
+    var hrs = new Date().getHours();
+    var mins = new Date().getMinutes();
+    var day = new Date().toDateString();
+    var z = hrs <= 11 ? 'AM' : 'PM';
+    if (hrs > 12) {
+        hrs = hrs - 12;
+    }
+    if (mins < 10) {
+        mins = '0' + mins;
+    }
     res.render('home.hbs', {
         pageTitle: 'Home',
         welcomeMessage: 'Welcome to Anoa Investments',
+        hours: hrs,
+        minutes: mins,
+        day: day,
+        zone: z
     });
 });
 
 app.get('/about', (req, res) => {
+    var hrs = new Date().getHours();
+    var mins = new Date().getMinutes();
+    var day = new Date().toDateString();
+    var z = hrs <= 11 ? 'AM' : 'PM';
+    if (hrs > 12) {
+        hrs = hrs - 12;
+    }
+    if (mins < 10) {
+        mins = '0' + mins;
+    }
     res.render('about.hbs', {
-        pageTitle: 'About'
+        pageTitle: 'About',
+        hours: hrs,
+        minutes: mins,
+        day: day,
+        zone: z
     });
 });
 
