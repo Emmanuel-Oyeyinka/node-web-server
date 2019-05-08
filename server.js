@@ -64,7 +64,7 @@ app.get('/about', (req, res) => {
     }
     res.render('about.hbs', {
         pageTitle: 'About',
-        hours: hrs + 1,
+        hours: hrs,
         minutes: mins,
         day: day,
         zone: z
