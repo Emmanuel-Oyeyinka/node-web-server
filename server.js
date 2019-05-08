@@ -52,7 +52,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-    var hrs = new Date().getUTCHours();
+    var hrs = new Date().getHours();
     var mins = new Date().getMinutes();
     var day = new Date().toDateString();
     var z = hrs <= 11 ? 'AM' : 'PM';
